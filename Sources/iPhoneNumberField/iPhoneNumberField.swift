@@ -149,12 +149,15 @@ public struct iPhoneNumberField: UIViewRepresentable {
     public func makeUIView(context: UIViewRepresentableContext<Self>) -> PhoneNumberTextField {
         let uiView = UIViewType()
         
+        uiView.returnKeyType = .continue
         uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
         uiView.addTarget(context.coordinator,
                          action: #selector(Coordinator.textViewDidChange),
                          for: .editingChanged)
+        
         uiView.delegate = context.coordinator
         uiView.withExamplePlaceholder = placeholder == nil
+        
         if let defaultRegion = defaultRegion {
             uiView.partialFormatter.defaultRegion = defaultRegion
         }
